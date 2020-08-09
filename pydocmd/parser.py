@@ -41,11 +41,20 @@ class Routine:
             signature=signature,
         )
 
+    def update(self, other: "Routine"):
+        if other.name != self.name:
+            raise ValueError(
+                f"method `update` can only be applied with same name module"
+            )
+        self.short_description = other.short_description or self.short_description
+        self.long_description = other.long_description or self.long_description
+        self.signature = other.signature or self.signature
+        self.example_code = other.example_code or self.example_code
+
 
 @dataclasses.dataclass
 class Module:
     name: str
-    modules: Dict[str, "Module"] = dataclasses.field(default_factory=dict)
     functions: Dict[str, Routine] = dataclasses.field(default_factory=dict)
 
     @classmethod
@@ -65,3 +74,13 @@ class Module:
         logger.info(f"Load {name}")
         return cls.from_obj(name, obj)
 
+    def update(self, other: "Module"):
+        if other.name != self.name:
+            raise ValueError(
+                f"method `update` can only be applied with same name module"
+            )
+        for name, fn in other.functions.items():
+            if name in self.functions:
+                self.functions[name].update(fn)
+            else:
+                self.functions[name] = fn
