@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pydocmd"
+name = "pydoc-md"
 version = "0.1.0"
 description = ""
 authors = ["Yohei Tamura <tamuhey@gmail.com>"]
@@ -20,4 +20,4 @@ requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
 
 [tool.poetry.scripts]
-pydocmd = "pydocmd.__main__:main"
+pydoc-md = "pydocmd.__main__:main"
