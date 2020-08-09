@@ -30,6 +30,7 @@ class Routine:
         doc = docstring_parser.parse(docstring) if docstring else None
         short_description = doc.short_description.strip() if doc else None
         long_description = doc.long_description.strip() if doc else None
+        example_code = get_example_code(doc) if doc else None
         try:
             signature = inspect.signature(obj)
         except ValueError:
@@ -39,6 +40,7 @@ class Routine:
             short_description=short_description,
             long_description=long_description,
             signature=signature,
+            example_code=example_code,
         )
 
     def update(self, other: "Routine"):
