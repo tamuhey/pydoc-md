@@ -5,7 +5,7 @@
 
 ## Usage
 
-```console
+````console
 $ pip install pydoc-md
 $ pydoc-md foo.py
 
@@ -23,4 +23,4 @@ Adds two integers and returns it
 >>> add(1, 2)
 3
 ```
-```
+````
